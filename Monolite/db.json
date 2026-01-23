@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": "91d3f99e-3ce6-410e-a3fb-376d97df9c47",
+      "name": "NUEVO",
+      "price": 5,
+      "description": "menos",
+      "category": "Manejadores",
+      "timestamp": "2026-01-23T19:35:49.882Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "25b4e780-a777-477c-b0af-8162a263af34",
+      "productId": "nuevo",
+      "quantity": 10000,
+      "totalPrice": 500
+    }
+  ],
+  "users": [
+    {
+      "id": "5b1f7aab-f618-4ff1-92f8-6a4cc16363b3",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMWY3YWFiLWY2MTgtNGZmMS05MmY4LTZhNGNjMTYzNjNiMyIsImVtYWlsIjoic2ViYV8xOV9zY0Bob3RtYWlsLmNvbSIsImlhdCI6MTc2OTIwMTM3OSwiZXhwIjoxNzY5MjA0OTc5fQ.8z-RV75wcsC7EnngwDmQNyJ8socL8HTd3XgA2UpKjfQ",
+      "email": "seba_19_sc@hotmail.com",
+      "password": "$2b$10$1qkYaC9S13ITUOLRlxVQse8jZFOnFVIzt/P9iRB8QqkuO.XfJX/NW"
+    }
+  ]
+}
