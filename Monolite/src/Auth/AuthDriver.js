@@ -47,6 +47,8 @@ export const cleanExpiredTokens = async () => {
     try {
     const { data: users } = await axios.get('http://localhost:8000/users');
 
+    console.log('Cleaning expired tokens');
+
     for(const user of users) {
       try {
         if (user.token == null || user.token === undefined) continue;

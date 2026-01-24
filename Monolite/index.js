@@ -11,13 +11,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// setInterval(() => {
-//   cleanExpiredTokens();
-// }, 60 * 60 * 1000);
-
 setInterval(() => {
-    cleanExpiredTokens();
-}, 60 * 1000); // por minuto
+  cleanExpiredTokens();
+}, 60 * 60 * 1000); // Every hour
 
 app.get('/', (req, res) => {
   res.send('Welcome to the Monolite API!');

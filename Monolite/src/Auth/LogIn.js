@@ -1,6 +1,7 @@
 import axios from 'axios';
 import z from 'zod';
 import { compare } from 'bcrypt';
+import { generateToken } from './AuthDriver.js';
 
 export const loginInSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -10,9 +11,9 @@ export const loginInSchema = z.object({
 export const LogIn = async (email, password) => {
     loginInSchema.parse({ email, password });
 
-    const allUsers = await axios.get('http://localhost:8000/users').then(res => res.data);
+    const allUsers = await axios.get('http://localhost:8000/users');
 
-    const user = allUsers.find(user => user.email === email);
+    const user = allUsers.data.find(user => user.email === email);
 
     let passwordDecrypted = false;
     
@@ -21,8 +22,14 @@ export const LogIn = async (email, password) => {
     }
     try {
         passwordDecrypted = await compare(password, user.password);
-        if (passwordDecrypted) {
+        if (passwordDecrypted && user.token === null) {
+
+        const token = generateToken(user);
+
+        await axios.patch(`http://localhost:8000/users/${user.id}`, { token });
+
         console.log("Loged : ",user , "passwordDecrypted: ",passwordDecrypted);
+
         return ("Loged : ",user);
     }
     } catch (error) {
