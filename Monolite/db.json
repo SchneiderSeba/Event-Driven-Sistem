@@ -20,9 +20,16 @@
   "users": [
     {
       "id": "5b1f7aab-f618-4ff1-92f8-6a4cc16363b3",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMWY3YWFiLWY2MTgtNGZmMS05MmY4LTZhNGNjMTYzNjNiMyIsImVtYWlsIjoic2ViYV8xOV9zY0Bob3RtYWlsLmNvbSIsImlhdCI6MTc2OTIwMTM3OSwiZXhwIjoxNzY5MjA0OTc5fQ.8z-RV75wcsC7EnngwDmQNyJ8socL8HTd3XgA2UpKjfQ",
+      "token": null,
       "email": "seba_19_sc@hotmail.com",
       "password": "$2b$10$1qkYaC9S13ITUOLRlxVQse8jZFOnFVIzt/P9iRB8QqkuO.XfJX/NW"
+    }
+  ],
+  "trashTokens": [
+    {
+      "id": "4f30",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMWY3YWFiLWY2MTgtNGZmMS05MmY4LTZhNGNjMTYzNjNiMyIsImVtYWlsIjoic2ViYV8xOV9zY0Bob3RtYWlsLmNvbSIsImlhdCI6MTc2OTIwMTM3OSwiZXhwIjoxNzY5MjA0OTc5fQ.8z-RV75wcsC7EnngwDmQNyJ8socL8HTd3XgA2UpKjfQ",
+      "revokedAt": "2026-01-24T18:22:58.491Z"
     }
   ]
 }

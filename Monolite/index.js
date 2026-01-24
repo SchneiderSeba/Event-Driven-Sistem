@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import ms from 'ms';
 import { ProductRouter, OrdersRouter, SigninRouter, LoginRouter } from './src/Routes/router.js';
+import { cleanExpiredTokens } from './src/Auth/AuthDriver.js';
 
 const PORT = process.env.PORT || 3001;
 
@@ -9,6 +10,14 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// setInterval(() => {
+//   cleanExpiredTokens();
+// }, 60 * 60 * 1000);
+
+setInterval(() => {
+    cleanExpiredTokens();
+}, 60 * 1000); // por minuto
 
 app.get('/', (req, res) => {
   res.send('Welcome to the Monolite API!');

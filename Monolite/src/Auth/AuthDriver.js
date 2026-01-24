@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import axios from 'axios';
 
 export const generateToken = (user) => {
   const payload = {
@@ -24,3 +25,40 @@ export const verifyToken = (token) => {
   }
 };
 
+export const revokeToken = async (user) => {
+  try {
+
+    const expiredToken = user.token;
+    
+    const response = await axios.post(`http://localhost:8000/trashTokens`, {token: expiredToken, revokedAt: new Date().toISOString()});
+    console.log('Token revoked and stored in trashTokens:', response.data);
+
+    const response2 = await axios.patch(`http://localhost:8000/users/${user.id}`, { token: null })
+    console.log('User token revoked:', response2.data);
+
+  } catch (error) {
+    console.error('Error revoking token:', error);
+  }
+};
+
+export const cleanExpiredTokens = async () => {
+  // Since JWTs are stateless, expired tokens are automatically invalid.
+  // This is a placeholder function in case you implement a token blacklist.
+    try {
+    const { data: users } = await axios.get('http://localhost:8000/users');
+
+    for(const user of users) {
+      try {
+        if (user.token == null || user.token === undefined) continue;
+        jwt.verify(user.token, process.env.JWT_SECRET || 'your_secret_key');
+      } catch (err) {
+        // Token is expired or invalid
+        if (err.name === 'TokenExpiredError') {
+        await revokeToken(user);
+      }
+    }
+  };
+  } catch (error) {
+    console.error('Error cleaning expired tokens:', error);
+  }
+};
