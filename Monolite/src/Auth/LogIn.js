@@ -31,7 +31,11 @@ export const LogIn = async (email, password) => {
         console.log("Loged : ",user , "passwordDecrypted: ",passwordDecrypted);
 
         return ("Loged : ",user);
-    }
+        } else if (passwordDecrypted && user.token !== null) {
+            console.log("Already logged : ",user , "passwordDecrypted: ",passwordDecrypted);
+            return ("Already logged : ",user);
+        }
+
     } catch (error) {
         console.error('Error decrypting password:', error);
         throw error;
