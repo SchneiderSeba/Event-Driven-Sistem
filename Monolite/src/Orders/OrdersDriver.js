@@ -7,6 +7,7 @@ export const orderSchema = z.object({
     productId: z.string().min(1, "Product ID is required"),
     quantity: z.number().positive("Quantity must be a positive number"),
     totalPrice: z.number().positive("Total Price must be a positive number"),
+    status: z.string().optional(),
 });
 
 export const createOrder = async (data) => {
@@ -18,6 +19,7 @@ export const createOrder = async (data) => {
         productId: data.productId,
         quantity: data.quantity,
         totalPrice: data.totalPrice,
+        status: data.status,
     };
 
     await axios.post('http://localhost:8000/orders', order).then(response => {
