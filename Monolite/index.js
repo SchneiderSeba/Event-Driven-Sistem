@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import ms from 'ms';
-import { ProductRouter, OrdersRouter, SigninRouter, LoginRouter } from './src/Routes/router.js';
+import { ProductRouter, OrdersRouter, SigninRouter, LoginRouter, PaymentRouter } from './src/Routes/router.js';
 import { cleanExpiredTokens } from './src/Auth/AuthDriver.js';
 
 const PORT = process.env.PORT || 3001;
@@ -71,6 +71,16 @@ app.post('/signin', async (req, res) => {
         body: JSON.stringify(req.body)
     });
     res.status(routeResponse.status).send(routeResponse.body);
+});
+
+app.use('/payments', async (req, res) => {
+  const pathSuffix = req.path === '/' ? '' : req.path;
+  const routeResponse = await PaymentRouter({
+    path: `/payments${pathSuffix}`,
+    method: req.method,
+    body: JSON.stringify(req.body)
+  });
+  res.status(routeResponse.status).send(routeResponse.body);
 });
 
 app.get('/health', (req, res) => {

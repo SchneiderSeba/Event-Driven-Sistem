@@ -47,10 +47,42 @@
       "status": "done"
     }
   ],
+  "payments": [
+    {
+      "id": "8897e9eb-c298-440a-a887-34be00000071",
+      "orderId": "52deea72-4104-4e8d-afc0-09f38a8b553c",
+      "status": "pending",
+      "amount": 500,
+      "currency": "ARS",
+      "provider": "Samsung",
+      "createdAt": "2026-01-26T18:36:02.844Z",
+      "updatedAt": "2026-01-26T18:36:02.844Z"
+    },
+    {
+      "id": "bda12e74-24f1-45b1-9317-c846fa0f6193",
+      "orderId": "290cab12-8ab6-43f4-aba9-c7d0b78cc6b4",
+      "status": "pending",
+      "amount": 1500,
+      "currency": "ARS",
+      "provider": "Samsung",
+      "createdAt": "2026-01-26T19:20:28.848Z",
+      "updatedAt": "2026-01-26T19:20:28.849Z"
+    },
+    {
+      "id": "2c8a3797-f213-47ea-b936-de218d01432b",
+      "orderId": "c2af946a-ffe0-4557-ad49-5555cc9657e8",
+      "status": "pending",
+      "amount": 1000,
+      "currency": "ARS",
+      "provider": "Mercado Pago",
+      "createdAt": "2026-01-26T19:21:02.777Z",
+      "updatedAt": "2026-01-26T19:21:02.778Z"
+    }
+  ],
   "users": [
     {
       "id": "5b1f7aab-f618-4ff1-92f8-6a4cc16363b3",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMWY3YWFiLWY2MTgtNGZmMS05MmY4LTZhNGNjMTYzNjNiMyIsImVtYWlsIjoic2ViYV8xOV9zY0Bob3RtYWlsLmNvbSIsImlhdCI6MTc2OTM4NDY0MSwiZXhwIjoxNzY5Mzg4MjQxfQ.4kMNWuIfaRSjWq3h6Y0uSuVpGA6Ec3a05spWidN1iTk",
+      "token": null,
       "email": "seba_19_sc@hotmail.com",
       "password": "$2b$10$1qkYaC9S13ITUOLRlxVQse8jZFOnFVIzt/P9iRB8QqkuO.XfJX/NW"
     }
@@ -65,6 +97,11 @@
       "id": "8c89",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMWY3YWFiLWY2MTgtNGZmMS05MmY4LTZhNGNjMTYzNjNiMyIsImVtYWlsIjoic2ViYV8xOV9zY0Bob3RtYWlsLmNvbSIsImlhdCI6MTc2OTI4MTA5OSwiZXhwIjoxNzY5Mjg0Njk5fQ.-tFzmyceA_0jRQAN6_ty7GjPhOvFlKQIsITBFwVVRNI",
       "revokedAt": "2026-01-24T20:32:33.460Z"
+    },
+    {
+      "id": "7559",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMWY3YWFiLWY2MTgtNGZmMS05MmY4LTZhNGNjMTYzNjNiMyIsImVtYWlsIjoic2ViYV8xOV9zY0Bob3RtYWlsLmNvbSIsImlhdCI6MTc2OTQ0NTM1NSwiZXhwIjoxNzY5NDQ4OTU1fQ.zKBvqqOIuGv6SILGYl50HqTci2N531hIXhC9BTJLNEo",
+      "revokedAt": "2026-01-26T17:35:56.401Z"
     }
   ]
 }

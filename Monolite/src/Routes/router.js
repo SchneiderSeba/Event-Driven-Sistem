@@ -1,5 +1,6 @@
 import { createProduct, getAllProducts, deleteProductById, getProductById, updateProductById } from "../Products/ProductsDriver.js";
 import { createOrder, getAllOrders, deleteOrderById, getOrderById, updateOrderById } from "../Orders/OrdersDriver.js";
+import { PaymentIntentMP, PaymentIntentPOS, allPayments } from "../Payments/PaymentDriven.js";
 import { SignIn } from "../Auth/SignIn.js";
 import { LogIn } from "../Auth/LogIn.js";
 
@@ -126,6 +127,43 @@ export const SigninRouter = async ({ path, method, body }) => {
             body: JSON.stringify({ message: "User signed in successfully" }),
         };
     } else {
+        return {
+            status: 404,
+            body: JSON.stringify({ error: "Route not found" }),
+        };
+    }
+};
+
+export const PaymentRouter = async ({ path, method, body }) => {
+
+    if (path === '/payments' && method === "GET") {
+
+        const payments = await allPayments();
+
+        return {
+            status: 200,
+            body: JSON.stringify(payments),
+        };
+    }
+    //Manejo de Ruta payment 
+    if (path.startsWith('/payments/mp') && method === 'POST') {
+        const paymentData = JSON.parse(body);
+
+        const paymentIntent = await PaymentIntentMP(paymentData);
+        return {
+            status: 201,
+            body: JSON.stringify(paymentIntent),
+        };
+    } else if (path.startsWith('/payments/pos') && method === 'POST') { 
+        const paymentData = JSON.parse(body);
+
+        const paymentIntent = await PaymentIntentPOS(paymentData);
+        return {
+            status: 201,
+            body: JSON.stringify(paymentIntent),
+        };
+    }
+    else {
         return {
             status: 404,
             body: JSON.stringify({ error: "Route not found" }),

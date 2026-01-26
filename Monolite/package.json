@@ -19,6 +19,7 @@
     "crypto": "^1.0.1",
     "dotenv": "^17.2.3",
     "express": "5.2.1",
+    "mercadopago": "^2.2.3",
     "json-server": "^1.0.0-beta.5",
     "jsonwebtoken": "^9.0.3",
     "ms": "^2.1.3",

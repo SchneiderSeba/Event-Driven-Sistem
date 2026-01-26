@@ -1,14 +1,7 @@
 
 import { randomUUID} from 'crypto';
-import z from 'zod';
+import { orderSchema } from '../Models/OrderDTO.js';
 import axios from 'axios';
-
-export const orderSchema = z.object({
-    productId: z.string().min(1, "Product ID is required"),
-    quantity: z.number().positive("Quantity must be a positive number"),
-    totalPrice: z.number().positive("Total Price must be a positive number"),
-    status: z.string().optional(),
-});
 
 export const createOrder = async (data) => {
 

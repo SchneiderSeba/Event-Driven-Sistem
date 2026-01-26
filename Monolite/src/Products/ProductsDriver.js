@@ -1,16 +1,6 @@
-
-import { randomUUID } from "crypto";
-import z from "zod";
 import axios from "axios";
-
-export const productSchema = z.object({
-    name: z.string().min(1, "Name is required"),
-    price: z.number().positive("Price must be a positive number"),
-    quantity: z.number().int().nonnegative("Quantity must be a non-negative integer"),
-    description: z.string().optional(),
-    category: z.string().min(1, "Category is required"),
-    timestamp: z.string().optional(),
-});
+import { randomUUID } from "crypto";
+import { productSchema } from "../Models/ProductDTO.js";
 
 // create
 
