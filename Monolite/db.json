@@ -15,6 +15,15 @@
       "description": "Muy Buena Manteca",
       "category": "Comida",
       "timestamp": "2026-01-25T23:36:25.445Z"
+    },
+    {
+      "id": "838629b3-c252-4449-8239-851eb5b243c7",
+      "name": "Teclado",
+      "price": 100,
+      "quantity": 1,
+      "description": "Trnmendo teclado",
+      "category": "Tech",
+      "timestamp": "2026-01-26T01:07:14.825Z"
     }
   ],
   "orders": [
@@ -29,6 +38,13 @@
       "productId": "Maquina",
       "quantity": 2,
       "totalPrice": 5000
+    },
+    {
+      "id": "d8bb23d0-53e5-41b2-bf42-73914baa5513",
+      "productId": "Cangrejo",
+      "quantity": 20,
+      "totalPrice": 600,
+      "status": "done"
     }
   ],
   "users": [
