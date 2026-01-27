@@ -1,6 +1,7 @@
 import { createProduct, getAllProducts, deleteProductById, getProductById, updateProductById } from "../Products/ProductsDriver.js";
 import { createOrder, getAllOrders, deleteOrderById, getOrderById, updateOrderById } from "../Orders/OrdersDriver.js";
 import { PaymentIntentMP, PaymentIntentPOS, allPayments } from "../Payments/PaymentDriven.js";
+import { allClients, createClient, getClientById, deleteClientById, updateClientById } from "../Clients/ClientsDriven.js";
 import { SignIn } from "../Auth/SignIn.js";
 import { LogIn } from "../Auth/LogIn.js";
 
@@ -170,3 +171,50 @@ export const PaymentRouter = async ({ path, method, body }) => {
         };
     }
 };
+
+export const ClientsRouter = async ({ path, method, body }) => {
+    if (path.startsWith('/clients/') && method === 'GET') {
+        const id = path.split('/')[2];
+        const client = await getClientById(id);
+        // Aquí podrías agregar la lógica para obtener un cliente por ID si es necesario
+        return {
+            status: 200,
+            body: JSON.stringify(client),
+        };
+    }
+
+    else if (path === '/clients' && method === 'GET') {
+
+        const clients = await allClients();
+        return {
+            status: 200,
+            body: JSON.stringify(clients),
+        };
+    } 
+
+    else if (path === '/clients' && method === 'POST') {
+        const clientData = JSON.parse(body);
+        const newClient = await createClient(clientData);
+        return {
+            status: 201,
+            body: JSON.stringify(newClient),
+        };
+    } 
+    else if (path.startsWith('/clients/') && method === 'DELETE') {
+        const id = path.split('/')[2];
+        const deletedClient = await deleteClientById(id);
+        return {
+            status: 200,
+            body: "Cliente Eliminado : " + JSON.stringify(deletedClient),
+        };
+    }
+    else if (path.startsWith('/clients/') && method === 'PATCH') {
+        const id = path.split('/')[2];
+        const updateData = JSON.parse(body);
+        const updatedClient = await updateClientById(id, updateData);
+        return {
+            status: 200,
+            body: JSON.stringify(updatedClient),
+        }; 
+    }
+}

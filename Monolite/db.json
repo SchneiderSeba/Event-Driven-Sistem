@@ -103,5 +103,21 @@
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMWY3YWFiLWY2MTgtNGZmMS05MmY4LTZhNGNjMTYzNjNiMyIsImVtYWlsIjoic2ViYV8xOV9zY0Bob3RtYWlsLmNvbSIsImlhdCI6MTc2OTQ0NTM1NSwiZXhwIjoxNzY5NDQ4OTU1fQ.zKBvqqOIuGv6SILGYl50HqTci2N531hIXhC9BTJLNEo",
       "revokedAt": "2026-01-26T17:35:56.401Z"
     }
+  ],
+  "clients": [
+    {
+      "id": "169a",
+      "clientId": "97bd0691-34d6-4dea-940b-a6bf3e96acac",
+      "name": "Lovavolr S.A.",
+      "email": "seba_19_sc@hotmail.com",
+      "phone": "51651651651"
+    },
+    {
+      "id": "5458",
+      "clientId": "b661d32d-b8a0-4ce6-b915-355f0c463e19",
+      "name": "",
+      "email": "",
+      "phone": "0000000"
+    }
   ]
 }

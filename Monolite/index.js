@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import ms from 'ms';
-import { ProductRouter, OrdersRouter, SigninRouter, LoginRouter, PaymentRouter } from './src/Routes/router.js';
+import { ProductRouter, OrdersRouter, SigninRouter, LoginRouter, PaymentRouter, ClientsRouter } from './src/Routes/router.js';
 import { cleanExpiredTokens } from './src/Auth/AuthDriver.js';
 
 const PORT = process.env.PORT || 3001;
@@ -77,6 +77,24 @@ app.use('/payments', async (req, res) => {
   const pathSuffix = req.path === '/' ? '' : req.path;
   const routeResponse = await PaymentRouter({
     path: `/payments${pathSuffix}`,
+    method: req.method,
+    body: JSON.stringify(req.body)
+  });
+  res.status(routeResponse.status).send(routeResponse.body);
+});
+
+app.all('/clients', async (req, res) => {
+  const routeResponse = await ClientsRouter({
+    path: req.path,
+    method: req.method,
+    body: JSON.stringify(req.body)
+  });
+  res.status(routeResponse.status).send(routeResponse.body);
+});
+
+app.all('/clients/:id', async (req, res) => {
+  const routeResponse = await ClientsRouter({
+    path: req.path,
     method: req.method,
     body: JSON.stringify(req.body)
   });
