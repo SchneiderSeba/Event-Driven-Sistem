@@ -4,6 +4,7 @@ import { PaymentIntentMP, PaymentIntentPOS, allPayments } from "../Payments/Paym
 import { allClients, createClient, getClientById, deleteClientById, updateClientById } from "../Clients/ClientsDriven.js";
 import { SignIn } from "../Auth/SignIn.js";
 import { LogIn } from "../Auth/LogIn.js";
+import { getAnalytics, getOrdersTotal } from "../Analytics/AnalyticsDriver.js";
 
 export const ProductRouter = async ({ path, method, body }) => {
 
@@ -217,4 +218,26 @@ export const ClientsRouter = async ({ path, method, body }) => {
             body: JSON.stringify(updatedClient),
         }; 
     }
-}
+};
+
+export const AnalyticsRouter = async ({ path, method }) => {
+    if (path === '/analytics' && method === 'GET') {
+        // Retorna todas las métricas calculadas por Python
+        const analytics = await getAnalytics();
+        return {
+            status: 200,
+            body: JSON.stringify(analytics),
+        };
+    } else if (path === '/analytics/orders/total' && method === 'GET') {
+        // Retorna solo la suma total de órdenes (compatibilidad con endpoint anterior)
+        const result = await getOrdersTotal();
+        return {
+            status: 200,
+            body: JSON.stringify(result),
+        };
+    }
+    return {
+        status: 404,
+        body: JSON.stringify({ error: "Route not found" }),
+    };
+};
