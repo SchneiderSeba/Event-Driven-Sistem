@@ -1,3 +1,4 @@
+# import polars as pl
 import polars as pl
 import json
 import sys
