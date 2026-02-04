@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import ms from 'ms';
-import { ProductRouter, OrdersRouter, SigninRouter, LoginRouter, PaymentRouter, ClientsRouter, AnalyticsRouter } from './src/Routes/router.js';
+import { ProductRouter, OrdersRouter, SigninRouter, LoginRouter, PaymentRouter, ClientsRouter, UsersRouter, AnalyticsRouter } from './src/Routes/router.js';
 import { cleanExpiredTokens } from './src/Auth/AuthDriver.js';
 
 const PORT = process.env.PORT || 3001;
@@ -94,6 +94,24 @@ app.all('/clients', async (req, res) => {
 
 app.all('/clients/:id', async (req, res) => {
   const routeResponse = await ClientsRouter({
+    path: req.path,
+    method: req.method,
+    body: JSON.stringify(req.body)
+  });
+  res.status(routeResponse.status).send(routeResponse.body);
+});
+
+app.all('/users', async (req, res) => {
+  const routeResponse = await UsersRouter({
+    path: req.path,
+    method: req.method,
+    body: JSON.stringify(req.body)
+  });
+  res.status(routeResponse.status).send(routeResponse.body);
+});
+
+app.all('/users/:id', async (req, res) => {
+  const routeResponse = await UsersRouter({
     path: req.path,
     method: req.method,
     body: JSON.stringify(req.body)

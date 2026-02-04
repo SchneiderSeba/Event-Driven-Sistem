@@ -2,6 +2,7 @@ import { createProduct, getAllProducts, deleteProductById, getProductById, updat
 import { createOrder, getAllOrders, deleteOrderById, getOrderById, updateOrderById } from "../Orders/OrdersDriver.js";
 import { PaymentIntentMP, PaymentIntentPOS, allPayments } from "../Payments/PaymentDriven.js";
 import { allClients, createClient, getClientById, deleteClientById, updateClientById } from "../Clients/ClientsDriven.js";
+import { allUsers, createUser, getUserById, deleteUserById, updateUserById } from "../Users/UsersDriven.js";
 import { SignIn } from "../Auth/SignIn.js";
 import { LogIn } from "../Auth/LogIn.js";
 import { getAnalytics, getOrdersTotal } from "../Analytics/AnalyticsDriver.js";
@@ -217,6 +218,45 @@ export const ClientsRouter = async ({ path, method, body }) => {
             status: 200,
             body: JSON.stringify(updatedClient),
         }; 
+    }
+};
+
+export const UsersRouter = async ({ path, method, body }) => {
+    if (path.startsWith('/users/') && method === 'GET') {
+        const id = path.split('/')[2];
+        const user = await getUserById(id);
+        return {
+            status: 200,
+            body: JSON.stringify(user),
+        };
+    } else if (path === '/users' && method === 'GET') {
+        const users = await allUsers();
+        return {
+            status: 200,
+            body: JSON.stringify(users),
+        };
+    } else if (path === '/users' && method === 'POST') {
+        const userData = JSON.parse(body);
+        const newUser = await createUser(userData);
+        return {
+            status: 201,
+            body: JSON.stringify(newUser),
+        };
+    } else if (path.startsWith('/users/') && method === 'DELETE') {
+        const id = path.split('/')[2];
+        const deletedUser = await deleteUserById(id);
+        return {
+            status: 200,
+            body: "Usuario Eliminado : " + JSON.stringify(deletedUser),
+        };
+    } else if (path.startsWith('/users/') && method === 'PATCH') {
+        const id = path.split('/')[2];
+        const updateData = JSON.parse(body);
+        const updatedUser = await updateUserById(id, updateData);
+        return {
+            status: 200,
+            body: JSON.stringify(updatedUser),
+        };
     }
 };
 

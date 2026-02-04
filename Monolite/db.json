@@ -81,10 +81,14 @@
   ],
   "users": [
     {
-      "id": "5b1f7aab-f618-4ff1-92f8-6a4cc16363b3",
-      "token": null,
+      "userId": "5b1f7aab-f618-4ff1-92f8-6a4cc16363b3",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMWY3YWFiLWY2MTgtNGZmMS05MmY4LTZhNGNjMTYzNjNiMyIsImVtYWlsIjoic2ViYV8xOV9zY0Bob3RtYWlsLmNvbSIsImlhdCI6MTc3MDIyOTY5OCwiZXhwIjoxNzcwMjMzMjk4fQ.f9CbxeqyxrueOKVT-G8fgmAqgwQyF1a5cXfXAYZegqs",
       "email": "seba_19_sc@hotmail.com",
-      "password": "$2b$10$1qkYaC9S13ITUOLRlxVQse8jZFOnFVIzt/P9iRB8QqkuO.XfJX/NW"
+      "password": "$2b$10$1qkYaC9S13ITUOLRlxVQse8jZFOnFVIzt/P9iRB8QqkuO.XfJX/NW",
+      "name": "Sebastian Schneider",
+      "phone": "96954415",
+      "role": "admin",
+      "createdAt": "2026-01-24T18:21:38.574Z"
     }
   ],
   "trashTokens": [

@@ -10,7 +10,7 @@ Este documento define **cómo está organizado el proyecto** y **cómo deberías
 - **Persistencia**: delegada a un **json-server** (script `npm run server`) que expone `db.json` como un POS/sistema externo.
 - **Patrón principal**:
   - `index.js` expone endpoints HTTP.
-  - `src/Routes/router.js` contiene *routers funcionales* por dominio (Products, Orders, Payments, Clients, Auth).
+  - `src/Routes/router.js` contiene *routers funcionales* por dominio (Products, Orders, Payments, Clients, Auth, Analytics).
   - Cada router delega en un **Driver** de su feature (`src/Products/ProductsDriver.js`, `src/Orders/OrdersDriver.js`, etc.).
   - La validación de datos se hace con **Zod DTOs** en `src/Models`.
 
@@ -39,6 +39,7 @@ Más validaciones van en **DTOs** y **schemas Zod**, no mezcladas en los control
     - `SigninRouter`
     - `PaymentRouter`
     - `ClientsRouter`
+    - `AnalyticsRouter`
   - Cada router:
     - Recibe `{ path, method, body }`.
     - Matchea rutas y métodos con `if / else if`.
@@ -75,6 +76,17 @@ Más validaciones van en **DTOs** y **schemas Zod**, no mezcladas en los control
   - **Regla**:
     - Mantener aquí toda integración con sistemas de pagos.
     - Si se agregan nuevos proveedores (ej: Stripe, otro POS), crear nuevas funciones en este archivo o un nuevo driver específico para ese proveedor.
+
+- **`src/Analytics/AnalyticsDriver.js` + `Analytics.py`**
+  - Funciones expuestas:
+    - `getAnalytics()`: ejecuta `Analytics.py --json` mediante `child_process`, parsea `stdout` y entrega todas las métricas calculadas (órdenes, productos, etc.).
+    - `getOrdersTotal()`: helper que reutiliza `getAnalytics` y devuelve solo `{ sumTotalPrice, count }` para compatibilidad con el endpoint previo.
+  - El script `Analytics.py` (en el mismo directorio) es responsable de abrir `db.json`, calcular estadísticas (ventas, montos, KPIs) y emitir JSON cuando se le pasa `--json`.
+  - Variables de entorno relevantes:
+    - `PYTHON_CMD`: permite indicar el intérprete (por defecto `py -3.13` en Windows, usar `python3` en Linux/Mac).
+  - **Reglas**:
+    - Toda lógica analítica pesada debe vivir en `Analytics.py`. El driver de Node sólo orquesta y expone helpers.
+    - Si se agregan nuevas métricas, primero actualiza `Analytics.py`, luego propaga los cambios a DTOs/resultados que devuelven los routers.
 
 - **`src/Auth`**
   - `AuthDriver.js`:
@@ -122,6 +134,7 @@ Cuando el agente sugiera o implemente una nueva feature, debe seguir este patró
 - **4. Conectar desde `index.js`**:
   - Usar `app.all`, `app.get`, `app.post`, etc., pasando `{ path, method, body: JSON.stringify(req.body) }` al router.
   - Nunca llamar drivers directamente desde `index.js`.
+  - Para rutas con sub-paths dinámicos (`/payments/*`, `/analytics/*`), se usa `app.use` y se reconstruye el `path` antes de delegar.
 
 ---
 
